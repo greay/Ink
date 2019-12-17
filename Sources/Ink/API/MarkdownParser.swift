@@ -35,6 +35,12 @@ public struct MarkdownParser {
     public func html(from markdown: String) -> String {
         parse(markdown).html
     }
+	/// Syntax highlight a Markdown string, discarding any metadata
+    /// found in the process. To preserve the Markdown's metadata,
+    /// use the `parse` method instead.
+    public func highlight(from markdown: String) -> String {
+        parse(markdown).highlighted
+    }
 
     /// Parse a Markdown string into a `Markdown` value, which contains
     /// both the HTML representation of the given string, and also any
@@ -92,11 +98,13 @@ public struct MarkdownParser {
 
             result.append(html)
         }
+        let highlighted = markdown
 
         return Markdown(
             html: html,
             titleHeading: titleHeading,
-            metadata: metadata?.values ?? [:]
+            metadata: metadata?.values ?? [:],
+            highlighted: highlighted
         )
     }
 }

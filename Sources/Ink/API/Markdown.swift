@@ -15,6 +15,10 @@ public struct Markdown {
     /// The HTML representation of the Markdown, ready to
     /// be rendered in a web browser.
     public var html: String
+    /// An HTML representation of the original Markdown text,
+    /// syntax highlighted
+    public var highlighted: String
+
     /// The inferred title of the document, from any top-level
     /// heading found when parsing. If the Markdown text contained
     /// two top-level headings, then this property will contain
@@ -33,10 +37,12 @@ public struct Markdown {
 
     internal init(html: String,
                   titleHeading: Heading?,
-                  metadata: [String : String]) {
+                  metadata: [String : String],
+                  highlighted: String) {
         self.html = html
         self.titleHeading = titleHeading
         self.metadata = metadata
+        self.highlighted = highlighted
     }
 }
 
