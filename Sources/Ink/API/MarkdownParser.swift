@@ -4,6 +4,8 @@
 *  MIT license, see LICENSE file for details
 */
 
+import Foundation
+
 ///
 /// A parser used to convert Markdown text into HTML.
 ///
@@ -38,7 +40,7 @@ public struct MarkdownParser {
 	/// Syntax highlight a Markdown string, discarding any metadata
     /// found in the process. To preserve the Markdown's metadata,
     /// use the `parse` method instead.
-    public func highlight(from markdown: String) -> String {
+    public func highlight(from markdown: String) -> NSAttributedString {
         parse(markdown).highlighted
     }
 
@@ -98,7 +100,15 @@ public struct MarkdownParser {
 
             result.append(html)
         }
-        let highlighted = markdown
+		let highlighted = fragments.reduce(into: NSMutableAttributedString(string: "")) { result, wrapper in
+            let highlighted = wrapper.fragment.highlighted(
+                usingURLs: urls,
+                rawString: wrapper.rawString,
+                applyingModifiers: modifiers
+            )
+
+            result.append(highlighted)
+        }
 
         return Markdown(
             html: html,

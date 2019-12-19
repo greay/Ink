@@ -4,6 +4,8 @@
 *  MIT license, see LICENSE file for details
 */
 
+import Foundation
+
 internal struct Heading: Fragment {
     var modifierTarget: Modifier.Target { .headings }
     var level: Int
@@ -29,6 +31,10 @@ internal struct Heading: Fragment {
         return "<\(tagName)>\(body)</\(tagName)>"
     }
 
+	func attributes(usingURLs urls: NamedURLCollection, modifiers: ModifierCollection) -> (String, [NSAttributedString.Key : Any]?) {
+		return (plainText(), nil)
+	}
+	
     func plainText() -> String {
         stripTrailingMarkers(from: text.plainText())
     }

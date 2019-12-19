@@ -4,6 +4,8 @@
 *  MIT license, see LICENSE file for details
 */
 
+import Foundation
+
 ///
 /// A parsed Markdown value, which contains its rendered
 /// HTML representation, as well as any metadata found at
@@ -17,7 +19,7 @@ public struct Markdown {
     public var html: String
     /// An HTML representation of the original Markdown text,
     /// syntax highlighted
-    public var highlighted: String
+    public var highlighted: NSAttributedString
 
     /// The inferred title of the document, from any top-level
     /// heading found when parsing. If the Markdown text contained
@@ -38,7 +40,7 @@ public struct Markdown {
     internal init(html: String,
                   titleHeading: Heading?,
                   metadata: [String : String],
-                  highlighted: String) {
+                  highlighted: NSAttributedString) {
         self.html = html
         self.titleHeading = titleHeading
         self.metadata = metadata

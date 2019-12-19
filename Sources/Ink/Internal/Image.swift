@@ -3,6 +3,7 @@
 *  Copyright (c) John Sundell 2019
 *  MIT license, see LICENSE file for details
 */
+import Foundation
 
 internal struct Image: Fragment {
     var modifierTarget: Modifier.Target { .images }
@@ -25,6 +26,10 @@ internal struct Image: Fragment {
 
         return "<img src=\"\(url)\"\(alt)/>"
     }
+	
+	func attributes(usingURLs urls: NamedURLCollection, modifiers: ModifierCollection) -> (String, [NSAttributedString.Key : Any]?) {
+		return (plainText(), nil)
+	}
 
     func plainText() -> String {
         link.plainText()

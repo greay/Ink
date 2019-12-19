@@ -4,6 +4,8 @@
 *  MIT license, see LICENSE file for details
 */
 
+import Foundation
+
 internal struct HorizontalLine: Fragment {
     var modifierTarget: Modifier.Target { .horizontalLines }
 
@@ -21,7 +23,11 @@ internal struct HorizontalLine: Fragment {
               modifiers: ModifierCollection) -> String {
         "<hr>"
     }
-
+	
+	func attributes(usingURLs urls: NamedURLCollection, modifiers: ModifierCollection) -> (String, [NSAttributedString.Key : Any]?) {
+		return (plainText(), nil)
+	}
+	
     func plainText() -> String {
         // Since we want to strip all HTML from plain text output,
         // there is nothing to return here, just an empty string.

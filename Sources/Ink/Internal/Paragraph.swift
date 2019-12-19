@@ -4,6 +4,8 @@
 *  MIT license, see LICENSE file for details
 */
 
+import Foundation
+
 internal struct Paragraph: Fragment {
     var modifierTarget: Modifier.Target { .paragraphs }
 
@@ -18,6 +20,10 @@ internal struct Paragraph: Fragment {
         let body = text.html(usingURLs: urls, modifiers: modifiers)
         return "<p>\(body)</p>"
     }
+	
+	func attributes(usingURLs urls: NamedURLCollection, modifiers: ModifierCollection) -> (String, [NSAttributedString.Key : Any]?) {
+		return (plainText(), nil)
+	}
 
     func plainText() -> String {
         text.plainText()

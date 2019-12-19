@@ -4,6 +4,8 @@
 *  MIT license, see LICENSE file for details
 */
 
+import Foundation
+
 internal struct List: Fragment {
     var modifierTarget: Modifier.Target { .lists }
 
@@ -147,6 +149,10 @@ internal struct List: Fragment {
 
         return "<\(tagName)\(startAttribute)>\(body)</\(tagName)>"
     }
+	
+	func attributes(usingURLs urls: NamedURLCollection, modifiers: ModifierCollection) -> (String, [NSAttributedString.Key : Any]?) {
+		return (plainText(), nil)
+	}
 
     func plainText() -> String {
         var isFirst = true

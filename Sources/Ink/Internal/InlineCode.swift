@@ -4,6 +4,8 @@
 *  MIT license, see LICENSE file for details
 */
 
+import Foundation
+
 struct InlineCode: Fragment {
     var modifierTarget: Modifier.Target { .inlineCode }
 
@@ -38,6 +40,10 @@ struct InlineCode: Fragment {
               modifiers: ModifierCollection) -> String {
         return "<code>\(code)</code>"
     }
+	
+	func attributes(usingURLs urls: NamedURLCollection, modifiers: ModifierCollection) -> (String, [NSAttributedString.Key : Any]?) {
+		return (plainText(), nil)
+	}
 
     func plainText() -> String {
         code

@@ -4,6 +4,8 @@
 *  MIT license, see LICENSE file for details
 */
 
+import Foundation
+
 internal struct Blockquote: Fragment {
     var modifierTarget: Modifier.Target { .blockquotes }
 
@@ -37,6 +39,10 @@ internal struct Blockquote: Fragment {
         return "<blockquote><p>\(body)</p></blockquote>"
     }
 
+	func attributes(usingURLs urls: NamedURLCollection, modifiers: ModifierCollection) -> (String, [NSAttributedString.Key : Any]?) {
+		return (plainText(), nil)
+	}
+	
     func plainText() -> String {
         text.plainText()
     }

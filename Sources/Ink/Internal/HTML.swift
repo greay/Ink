@@ -4,6 +4,8 @@
 *  MIT license, see LICENSE file for details
 */
 
+import Foundation
+
 internal struct HTML: Fragment {
     var modifierTarget: Modifier.Target { .html }
 
@@ -55,6 +57,10 @@ internal struct HTML: Fragment {
               modifiers: ModifierCollection) -> String {
         String(string)
     }
+	
+	func attributes(usingURLs urls: NamedURLCollection, modifiers: ModifierCollection) -> (String, [NSAttributedString.Key : Any]?) {
+		return (plainText(), nil)
+	}
 
     func plainText() -> String {
         // Since we want to strip all HTML from plain text output,
